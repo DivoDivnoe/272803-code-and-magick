@@ -30,7 +30,6 @@ window.renderStatistics = function (ctx, names, times) {
   var indent = barWidth + 50;
   var initialX = 150;
   var opacity = 0;
-  
   for (i = 0; i < times.length; i++) {
     var columnHeight = times[i] * step;
     var initialY = 80 + histogramHeight - columnHeight;
