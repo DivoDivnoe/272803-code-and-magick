@@ -36,7 +36,7 @@ window.renderStatistics = function (ctx, names, times) {
   }
 };
 
-function getMaxValue (times) {
+function getMaxValue(times) {
   var max = -1;
 
   for (var i = 0; i < times.length; i++) {
@@ -48,6 +48,6 @@ function getMaxValue (times) {
   return max;
 }
 
-function getColor (item, opacity) {
+function getColor(item, opacity) {
   return item === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + opacity + ')';
 }
