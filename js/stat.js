@@ -15,13 +15,11 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Список результатов: ', 110, 40);
 
   var max = -1;
-  var maxIndex = -1;
 
   for (var i = 0; i < times.length; i++) {
     var time = times[i];
     if (time > max) {
       max = time;
-      maxIndex = i;
     }
   }
 
@@ -31,12 +29,12 @@ window.renderStatistics = function (ctx, names, times) {
   var barWidth = 40;
   var indent = barWidth + 50;
   var initialX = 150;
-  
   var opacity = 0;
+  
   for (i = 0; i < times.length; i++) {
     var columnHeight = times[i] * step;
     var initialY = 80 + histogramHeight - columnHeight;
-	opacity = opacity > 0.7 ? opacity + 0.3 - 1 : opacity + 0.3;
+    opacity = opacity > 0.7 ? opacity + 0.3 - 1 : opacity + 0.3;
 
     ctx.fillStyle = (names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + opacity + ')');
     ctx.fillRect(initialX + indent * i, initialY, barWidth, columnHeight);
