@@ -15,7 +15,7 @@ var chooseRandomItem = function (array) {
   return array[Math.floor(Math.random() * array.length)];
 };
 var generateName = function (names, surnames) {
-  return (Math.random() >= 0.5 ? chooseRandomItem(names) + ' ' + chooseRandomItem(surnames): chooseRandomItem(surnames) + ' ' + chooseRandomItem(names));
+  return (Math.random() >= 0.5 ? chooseRandomItem(names) + ' ' + chooseRandomItem(surnames) : chooseRandomItem(surnames) + ' ' + chooseRandomItem(names));
 };
 
 var wizards = [
@@ -51,10 +51,10 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
-var fillSimilarList = function (wizards) {
+var fillSimilarList = function (items) {
   var fragment = document.createDocumentFragment();
-  for (var i = 0; i < wizards.length; i++) {
-    fragment.appendChild(renderWizard(wizards[i]));
+  for (var i = 0; i < items.length; i++) {
+    fragment.appendChild(renderWizard(items[i]));
   }
   similarListElement.appendChild(fragment);
 };
