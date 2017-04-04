@@ -1,7 +1,11 @@
 'use strict';
 
+var showElement = function (el, nameOfClass) {
+  return el.classList.remove(nameOfClass);
+};
+
 var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
+showElement(userDialog, 'hidden');
 
 var similarListElement = userDialog.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
@@ -14,32 +18,27 @@ var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var chooseRandomItem = function (array) {
   return array[Math.floor(Math.random() * array.length)];
 };
+
 var generateName = function (names, surnames) {
-  return (Math.random() >= 0.5 ? chooseRandomItem(names) + ' ' + chooseRandomItem(surnames) : chooseRandomItem(surnames) + ' ' + chooseRandomItem(names));
+  var name = chooseRandomItem(names);
+  var surname = chooseRandomItem(surnames);
+  return (Math.random() >= 0.5 ? name + ' ' + surname : surname + ' ' + name);
 };
 
-var wizards = [
-  {
-    name: generateName(WIZARD_NAMES, WIZARD_SURNAMES),
-    coatColor: chooseRandomItem(COAT_COLORS),
-    eyesColor: chooseRandomItem(EYES_COLORS)
-  },
-  {
-    name: generateName(WIZARD_NAMES, WIZARD_SURNAMES),
-    coatColor: chooseRandomItem(COAT_COLORS),
-    eyesColor: chooseRandomItem(EYES_COLORS)
-  },
-  {
-    name: generateName(WIZARD_NAMES, WIZARD_SURNAMES),
-    coatColor: chooseRandomItem(COAT_COLORS),
-    eyesColor: chooseRandomItem(EYES_COLORS)
-  },
-  {
-    name: generateName(WIZARD_NAMES, WIZARD_SURNAMES),
-    coatColor: chooseRandomItem(COAT_COLORS),
-    eyesColor: chooseRandomItem(EYES_COLORS)
+var generateWizardsArray = function () {
+  var wizards = [];
+
+  for (var i = 0; i < 4; i++) {
+    wizards.push({
+      name: generateName(WIZARD_NAMES, WIZARD_SURNAMES),
+      coatColor: chooseRandomItem(COAT_COLORS),
+      eyesColor: chooseRandomItem(EYES_COLORS)
+    });
   }
-];
+  return wizards;
+};
+
+var wizards = generateWizardsArray();
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -60,5 +59,4 @@ var fillSimilarList = function (items) {
 };
 
 fillSimilarList(wizards);
-
-userDialog.querySelector('.setup-similar').classList.remove('hidden');
+showElement(userDialog.querySelector('.setup-similar'), 'hidden');
