@@ -72,16 +72,20 @@ var fillElement = function (element, color) {
   element.style.fill = color;
 };
 
-userDialog.querySelector('.wizard-coat').addEventListener('click', function () {
-  fillElement(this, chooseRandomItem(COAT_COLORS));
+var wizardCoat = userDialog.querySelector('.wizard-coat');
+var wizardEyes = userDialog.querySelector('.wizard-eyes');
+var fireball = userDialog.querySelector('.setup-fireball-wrap');
+
+wizardCoat.addEventListener('click', function () {
+  fillElement(wizardCoat, chooseRandomItem(COAT_COLORS));
 });
 
-userDialog.querySelector('.wizard-eyes').addEventListener('click', function () {
-  fillElement(this, chooseRandomItem(EYES_COLORS));
+wizardEyes.addEventListener('click', function () {
+  fillElement(wizardEyes, chooseRandomItem(EYES_COLORS));
 });
 
-userDialog.querySelector('.setup-fireball-wrap').addEventListener('click', function () {
-  this.style.backgroundColor = chooseRandomItem(FIREBALL_COLORS);
+fireball.addEventListener('click', function () {
+  fireball.style.backgroundColor = chooseRandomItem(FIREBALL_COLORS);
 });
 
 var generateName = function (names, surnames) {
