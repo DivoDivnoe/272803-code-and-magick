@@ -2,7 +2,7 @@
 
 (function () {
   var dialogOpen = document.querySelector('.setup-open-icon');
-  var dialogClose = common.userDialog.querySelector('.setup-close');
+  var dialogClose = window.common.userDialog.querySelector('.setup-close');
 
   var hideElement = function (el, nameOfClass) {
     el.classList.add(nameOfClass);
@@ -11,7 +11,7 @@
 
   var escapePressHandler = function (evt) {
     if (isEscapeKey(evt)) {
-      hideElement(common.userDialog, 'hidden');
+      hideElement(window.common.userDialog, 'hidden');
     }
   };
 
@@ -25,14 +25,14 @@
 
   dialogClose.addEventListener('keydown', function (evt) {
     if (isActivationKey(evt)) {
-      hideElement(common.userDialog, 'hidden');
+      hideElement(window.common.userDialog, 'hidden');
     }
   });
   dialogClose.addEventListener('click', function () {
-    hideElement(common.userDialog, 'hidden');
+    hideElement(window.common.userDialog, 'hidden');
   });
   var openPopup = function () {
-    common.showElement(common.userDialog, 'hidden');
+    window.common.showElement(window.common.userDialog, 'hidden');
     document.addEventListener('keydown', escapePressHandler);
     document.querySelector('.setup-user-name').addEventListener('keydown', function (evt) {
       if (isEscapeKey(evt)) {
