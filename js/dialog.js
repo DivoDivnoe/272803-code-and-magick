@@ -4,38 +4,29 @@
   var dialogOpen = document.querySelector('.setup-open-icon');
   var dialogClose = window.common.userDialog.querySelector('.setup-close');
 
-  var hideElement = function (el, nameOfClass) {
-    el.classList.add(nameOfClass);
-    el.removeEventListener('keydown', escapePressHandler);
-  };
+  
 
   var escapePressHandler = function (evt) {
-    if (isEscapeKey(evt)) {
-      hideElement(window.common.userDialog, 'hidden');
+    if (window.common.isEscapeKey(evt)) {
+      window.common.hideElement(window.common.userDialog, 'hidden');
     }
   };
-
-  var isEscapeKey = function (evt) {
-    return evt.keyCode === 27;
-  };
-
-  var isActivationKey = function (evt) {
-    return evt.keyCode === 13;
-  };
-
+  
   dialogClose.addEventListener('keydown', function (evt) {
-    if (isActivationKey(evt)) {
-      hideElement(window.common.userDialog, 'hidden');
+    if (window.common.isActivationKey(evt)) {
+      window.common.hideElement(window.common.userDialog, 'hidden');
+      window.common.userDialog.removeEventListener('keydown', escapePressHandler);
     }
   });
   dialogClose.addEventListener('click', function () {
-    hideElement(window.common.userDialog, 'hidden');
+    window.common.hideElement(window.common.userDialog, 'hidden');
+    window.common.userDialog.removeEventListener('keydown', escapePressHandler);
   });
   var openPopup = function () {
     window.common.showElement(window.common.userDialog, 'hidden');
     document.addEventListener('keydown', escapePressHandler);
     document.querySelector('.setup-user-name').addEventListener('keydown', function (evt) {
-      if (isEscapeKey(evt)) {
+      if (window.common.isEscapeKey(evt)) {
         evt.stopPropagation();
       }
     });
@@ -46,7 +37,7 @@
   });
 
   dialogOpen.addEventListener('keydown', function (evt) {
-    if (isActivationKey(evt)) {
+    if (window.common.isActivationKey(evt)) {
       openPopup();
     }
   });

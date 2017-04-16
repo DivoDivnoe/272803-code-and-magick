@@ -14,6 +14,18 @@ window.common = function () {
 
     showElement: function (el, nameOfClass) {
       el.classList.remove(nameOfClass);
+    },
+
+    hideElement: function (el, nameOfClass) {
+      el.classList.add(nameOfClass);
+    },
+
+    isEscapeKey: function (evt) {
+      return evt.keyCode === 27;
+    },
+
+    isActivationKey: function (evt) {
+      return evt.keyCode === 13;
     }
   };
 }();
