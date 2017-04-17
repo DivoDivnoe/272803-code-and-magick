@@ -15,10 +15,10 @@
     }
   };
 
-  var closeDialog = function (dialogCoords) {
+  var closeDialog = function (coords) {
     window.common.hideElement(window.common.userDialog, 'hidden');
-    window.common.userDialog.style.left = dialogCoords.x;
-    window.common.userDialog.style.top = dialogCoords.y;
+    window.common.userDialog.style.left = coords.x;
+    window.common.userDialog.style.top = coords.y;
     window.common.userDialog.removeEventListener('keydown', escapePressHandler);
   };
 
