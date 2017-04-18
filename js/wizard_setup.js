@@ -16,7 +16,7 @@
     element.style.fill = window.common.chooseRandomItem(colors);
   };
 
-  var changeElementBackground = function(element, colors) {
+  var changeElementBackground = function (element, colors) {
     element.style.backgroundColor = window.common.chooseRandomItem(colors);
   };
 
