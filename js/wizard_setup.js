@@ -12,6 +12,14 @@
   var wizardEyes = window.common.userDialog.querySelector('.wizard-eyes');
   var fireball = window.common.userDialog.querySelector('.setup-fireball-wrap');
 
+  var fillElement = function (element, colors) {
+    element.style.fill = window.common.chooseRandomItem(colors);
+  };
+
+  var changeElementBackground = function(element, colors) {
+    element.style.backgroundColor = window.common.chooseRandomItem(colors);
+  };
+
   var generateName = function (names, surnames) {
     var name = window.common.chooseRandomItem(names);
     var surname = window.common.chooseRandomItem(surnames);
@@ -51,15 +59,15 @@
   window.common.showElement(window.common.userDialog.querySelector('.setup-similar'), 'hidden');
 
   wizardCoat.addEventListener('click', function () {
-    window.common.fillElement(wizardCoat, window.common.chooseRandomItem(window.constants.COAT_COLORS));
+    window.colorizeElement(wizardCoat, window.constants.COAT_COLORS, fillElement);
   });
 
   wizardEyes.addEventListener('click', function () {
-    window.common.fillElement(wizardEyes, window.common.chooseRandomItem(window.constants.EYES_COLORS));
+    window.colorizeElement(wizardEyes, window.constants.EYES_COLORS, fillElement);
   });
 
   fireball.addEventListener('click', function () {
-    fireball.style.backgroundColor = window.common.chooseRandomItem(window.constants.FIREBALL_COLORS);
+    window.colorizeElement(fireball, window.constants.FIREBALL_COLORS, changeElementBackground);
   });
 
   var dragStartHandler = function (evt) {
