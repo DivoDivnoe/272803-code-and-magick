@@ -1,11 +1,18 @@
 'use strict';
 
 window.common = function () {
+  var ESCAPE_KEY_CODE = 27;
+  var ENTER_KEY_CODE = 13;
+
   return {
     userDialog: document.querySelector('.setup'),
 
     chooseRandomItem: function (array) {
       return array[Math.floor(Math.random() * array.length)];
+    },
+
+    spliceRandomItem: function (array) {
+      return array.splice(Math.floor(Math.random() * array.length), 1)[0];
     },
 
     fillElement: function (element, color) {
@@ -21,11 +28,11 @@ window.common = function () {
     },
 
     isEscapeKey: function (evt) {
-      return evt.keyCode === 27;
+      return evt.keyCode === ESCAPE_KEY_CODE;
     },
 
     isActivationKey: function (evt) {
-      return evt.keyCode === 13;
+      return evt.keyCode === ENTER_KEY_CODE;
     }
   };
 }();

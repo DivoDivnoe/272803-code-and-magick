@@ -20,7 +20,7 @@
     element.style.backgroundColor = window.common.chooseRandomItem(colors);
   };
 
-  var generateName = function (names, surnames) {
+  /* var generateName = function (names, surnames) {
     var name = window.common.chooseRandomItem(names);
     var surname = window.common.chooseRandomItem(surnames);
     return (Math.random() >= 0.5 ? name + ' ' + surname : surname + ' ' + name);
@@ -37,26 +37,46 @@
       });
     }
     return res;
-  })();
+  })();*/
 
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    window.common.fillElement(wizardElement.querySelector('.wizard-coat'), wizard.coatColor);
-    window.common.fillElement(wizardElement.querySelector('.wizard-eyes'), wizard.eyesColor);
+    window.common.fillElement(wizardElement.querySelector('.wizard-coat'), wizard.colorCoat);
+    window.common.fillElement(wizardElement.querySelector('.wizard-eyes'), wizard.colorEyes);
 
     return wizardElement;
   };
 
-  var fragment = document.createDocumentFragment();
+  var successHandler = function (wizards) {
+    var fragment = document.createDocumentFragment();
+    wizards = wizards.slice();
 
-  for (var i = 0; i < wizards.length; i++) {
-    fragment.appendChild(renderWizard(wizards[i]));
-  }
+    for (var i = 0; i < 4; i++) {
+      fragment.appendChild(renderWizard(window.common.spliceRandomItem(wizards)));
+    }
 
-  similarListElement.appendChild(fragment);
-  window.common.showElement(window.common.userDialog.querySelector('.setup-similar'), 'hidden');
+    similarListElement.appendChild(fragment);
+    window.common.showElement(window.common.userDialog.querySelector('.setup-similar'), 'hidden');
+  };
+
+  var errorHandler = function (message) {
+    var node = document.createElement('div');
+
+    node.style.position = 'absolute';
+    node.style.left = '0';
+    node.style.right = '0';
+    node.style.zIndex = '100';
+    node.style.fontSize = '30px';
+    node.style.textAlign = 'center';
+    node.style.backgroundColor = 'red';
+    node.textContent = message;
+
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
+  window.loadData(successHandler, errorHandler);
 
   wizardCoat.addEventListener('click', function () {
     window.colorizeElement(wizardCoat, window.constants.COAT_COLORS, fillElement);
