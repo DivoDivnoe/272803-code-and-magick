@@ -20,7 +20,7 @@
     element.style.backgroundColor = window.common.chooseRandomItem(colors);
   };
 
-  /*var generateName = function (names, surnames) {
+  /* var generateName = function (names, surnames) {
     var name = window.common.chooseRandomItem(names);
     var surname = window.common.chooseRandomItem(surnames);
     return (Math.random() >= 0.5 ? name + ' ' + surname : surname + ' ' + name);

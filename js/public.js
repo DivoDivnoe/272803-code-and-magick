@@ -10,7 +10,7 @@ window.common = function () {
     chooseRandomItem: function (array) {
       return array[Math.floor(Math.random() * array.length)];
     },
-    
+
     spliceRandomItem: function (array) {
       return array.splice(Math.floor(Math.random() * array.length), 1)[0];
     },
