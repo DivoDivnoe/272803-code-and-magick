@@ -5,13 +5,23 @@ window.render = function () {
   var similarListElement = window.common.userDialog.querySelector('.setup-similar-list');
 
   var renderWizard = function (wizard) {
-    var wizardElement = similarWizardTemplate.cloneNode(true);
+    var element = similarWizardTemplate.cloneNode(true);
+    var wizardElement = element.querySelector('.wizard');
 
-    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+    element.querySelector('.setup-similar-label').textContent = wizard.name;
     window.common.fillElement(wizardElement.querySelector('.wizard-coat'), wizard.colorCoat);
     window.common.fillElement(wizardElement.querySelector('.wizard-eyes'), wizard.colorEyes);
+    window.popup(wizardElement, function () {
+      return renderWizardArtifacts(wizard);
+    });
 
-    return wizardElement;
+    return element;
+  };
+
+  var renderWizardArtifacts = function (wizard) {
+    return wizard.artifacts.map(function (artifact) {
+      return artifact.name;
+    }).join('<br>');
   };
 
   return function (wizards) {

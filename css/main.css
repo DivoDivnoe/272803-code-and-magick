@@ -812,3 +812,39 @@ input[type=radio]:checked + .review-mark-label {
   font-size: 14px;
   color: #ffffff;
 }
+
+.upload {
+  position: relative;
+
+  display: inline-block;
+
+  box-sizing: border-box;
+
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  height: 40px;
+}
+
+.upload .setup-user-pic {
+  display: block;
+  margin: 0;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.upload input {
+  display: none;
+}
+
+.wizard-artifacts {
+  position: absolute;
+  z-index: 100;
+
+  min-width: 200px;
+
+  background-color: #414342;
+  border: 2px solid black;
+}
