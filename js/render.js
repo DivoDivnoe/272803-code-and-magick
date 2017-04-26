@@ -5,17 +5,17 @@ window.render = function () {
   var similarListElement = window.common.userDialog.querySelector('.setup-similar-list');
 
   var renderWizard = function (wizard) {
-    var element = similarWizardTemplate.cloneNode(true);
-    var wizardElement = element.querySelector('.wizard');
+    var template = similarWizardTemplate.cloneNode(true);
+    var wizardElement = template.querySelector('.wizard');
 
-    element.querySelector('.setup-similar-label').textContent = wizard.name;
+    template.querySelector('.setup-similar-label').textContent = wizard.name;
     window.common.fillElement(wizardElement.querySelector('.wizard-coat'), wizard.colorCoat);
     window.common.fillElement(wizardElement.querySelector('.wizard-eyes'), wizard.colorEyes);
     window.popup(wizardElement, function () {
       return renderWizardArtifacts(wizard);
     });
 
-    return element;
+    return template;
   };
 
   var renderWizardArtifacts = function (wizard) {
